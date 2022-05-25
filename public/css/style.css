@@ -1,0 +1,332 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+header {
+    z-index: 1;
+    position: fixed;
+    background: #22242A;
+    padding: 30px;
+    width: calc(100% - 0%);
+    top: -10px;
+    height: 30px;
+}
+
+.left_area h3 {
+    color: #fff;
+    margin-top: 8px;
+    margin-left: 32px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.left_area img {
+    width: 28px;
+    margin-right: 5px;
+    margin-top: -15px;
+    margin-bottom: -35px;
+}
+
+.left_area h3 span {
+    color: #19B3D3;
+    margin-left: -7px;
+}
+
+.logout_btn {
+    padding: 4px;
+    background: #fff;
+    text-decoration: none;
+    float: right;
+    margin-top: -50px;
+    margin-right: 30px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    transition: 0.5s;
+    transition-property: background;
+}
+
+.my_profile {
+    padding: 4px;
+    background: #fff;
+    text-decoration: none;
+    float: right;
+    margin-top: -50px;
+    margin-right: 100px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    transition: 0.5s;
+    transition-property: background;
+}
+
+.my_profile:hover {
+    background: #0B87A6;
+    color: #000;
+}
+
+.logout_btn:hover {
+    background: #0B87A6;
+}
+
+.sidebar {
+    z-index: 1;
+    top: 0;
+    background: #2f323a;
+    margin-top: 50px;
+    padding-top: 30px;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    transition: 0.5s;
+    transition-property: left;
+    overflow-y: auto;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar a {
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 30px;
+    font-size: 18px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background;
+}
+
+.sidebar a:hover {
+    background: #19B3D3;
+    margin-left: 0px;
+}
+
+.sidebar i {
+    padding-right: 10px;
+}
+
+label #sidebar_btn {
+    z-index: 1;
+    color: #fff;
+    position: fixed;
+    cursor: pointer;
+    left: 240px;
+    font-size: 24px;
+    margin-top: -40px;
+    transition: 0.5s;
+    transition-property: color;
+}
+
+label #sidebar_btn:hover {
+    color: #19B3D3;
+}
+
+#check:checked~.sidebar {
+    left: -300px;
+}
+
+#check:checked~.sidebar a span {
+    display: none;
+}
+
+#check:checked~.sidebar a {
+    font-size: 20px;
+    margin-left: 165px;
+    width: 100%;
+}
+
+.content {
+    width: (100% - 250px);
+    margin-top: 60px;
+    padding: 20px;
+    margin-left: 250px;
+    height: 100vh;
+    transition: 0.5s;
+}
+
+#check:checked~.content {
+    margin-left: 10px;
+}
+
+#check {
+    display: none;
+}
+
+.mobile_nav {
+    display: none;
+}
+
+.content .card p {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+
+/* Responsive CSS */
+
+@media screen and (max-width: 780px) {
+    .sidebar {
+        display: none;
+    }
+    #sidebar_btn {
+        display: none;
+    }
+    .content {
+        margin-left: 0;
+        margin-top: 0;
+        padding: 10px 20px;
+        transition: 0s;
+    }
+    #check:checked~.content {
+        margin-left: 0;
+    }
+    .mobile_nav {
+        display: block;
+        width: calc(100% - 0%);
+    }
+    .nav_bar {
+        background: #222;
+        width: (100% - 0px);
+        margin-top: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+    .nav_bar .mobile_profile_image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .nav_bar .nav_btn {
+        color: #fff;
+        font-size: 2px;
+        cursor: pointer;
+        transition: 0.5s;
+        transition-property: color;
+    }
+    .nav_bar .nav_btn:hover {
+        color: #19B3D3;
+    }
+    .mobile_nav_items {
+        background: #2F323A;
+        display: none;
+    }
+    .mobile_nav_items a {
+        color: #fff;
+        display: block;
+        text-align: center;
+        letter-spacing: 1px;
+        line-height: 60px;
+        text-decoration: none;
+        box-sizing: border-box;
+        transition: 0.5s;
+        transition-property: background;
+    }
+    .mobile_nav_items a:hover {
+        background: #19B3D3;
+    }
+    .mobile_nav_items i {
+        padding-right: 10px;
+    }
+    .active {
+        display: block;
+    }
+    /*.mobile_nav_items{
+    background: #2F323A;
+    overflow: hidden;
+    max-height: 0;
+	transition: 0.5s;
+	transition-property: max-height;
+  }
+
+  .mobile_nav_items a{
+    color: #fff;
+    display: block;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 60px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property: background;
+  }
+
+  .mobile_nav_items a:hover{
+    background: #19B3D3;
+  }
+
+  .mobile_nav_items i{
+    padding-right: 10px;
+  }
+
+  .active{
+    max-height: 1000px;
+  }*/
+}
+
+
+/* Style the sidenav links and the dropdown button */
+
+.sidenav a,
+.dropdown-btn {
+    padding: 6px 8px 6px 40px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #f1f1f1;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    margin-left: 0px;
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* On mouse-over */
+
+.sidenav a:hover,
+.dropdown-btn:hover {
+    background: #19B3D3;
+}
+
+.active {
+    color: white;
+}
+
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    font-size: 16px;
+    padding: 3px 3px 3px 3px;
+}
+
+
+/* Optional: Style the caret down icon */
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+    margin-right: 50px;
+}
