@@ -34,25 +34,26 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="addclass">Create class</a>
+            <a href="createclass">Create class</a>
             <a href="manageclass">Manage class</a>
         </div>
         <button class="dropdown-btn">Subjects
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="addsub">Create Subjects</a>
+            <a href="createsub">Create Subjects</a>
             <a href="managesub">Manage subjects</a>
-            <a href="addsubcomb">Add subject combination</a>
-            <a href="managesubcomb">Manage subject combination</a>
+            <a href="addsubc">Add subject combination</a>
+            <a href="managesubc">Manage subject combination</a>
 
         </div>
         <button class="dropdown-btn">Exam
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="addexam">Exam List</a>
-            <a href="manageexam">Grades</a>
+            <a href="createexam">Crate Exam</a>
+            <a href="manageexam">Manage Exam</a>
+            <a href="grades">Grades</a>
             <a href="tsheet">Tabulation sheet</a>
             <a href="addmarks">Marks</a>
             <a href="marksheet">Marksheet</a>
@@ -62,26 +63,27 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="addteacher">Add Teacher</a>
-            <a href="manageteachers">Manage Teachers</a>
-            <a href="addteacherscomb">Add Teacher combination</a>
-            <a href="">Manage Teacher combination</a>
+            <a href="createteacher">Add Teacher</a>
+            <a href="manageteacher">Manage Teachers</a>
+            <a href="addteacherc">Add Teacher combination</a>
+            <a href="manageteacherc">Manage Teacher combination</a>
 
         </div>
         <button class="dropdown-btn">Students
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="addstudnts">Add Students</a>
-            <a href="mstudents">Manage Studntss</a>
+            <a href="createstudent">Add Students</a>
+            <a href="managestudent">Manage Studntss</a>
         </div>
         <button class="dropdown-btn">Parents
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="addparents">Add Parents</a>
-            <a href="manageparents">Manage Parents</a>
-            <a href="dashboard">Manage Parent combination</a>
+            <a href="createparent">Add Parents</a>
+            <a href="manageparent">Manage Parents</a>
+            <a href="addparentc">Add Parent combination</a>
+            <a href="manageparentc">Manage Parent combination</a>
         </div>
     </div>
 </div>

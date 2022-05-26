@@ -58,7 +58,7 @@
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index"> Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="/"> Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="about"> About </a>
