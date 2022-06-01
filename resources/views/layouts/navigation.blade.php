@@ -29,7 +29,7 @@
 </header>
 <div class="sidebar">
     <div class="mobile_nav_items">
-        <a href="#"><span>Dashboard</span></a>
+        <a href="/dashboard"><span>Dashboard</span></a>
         <button class="dropdown-btn">Class
             <i class="fa fa-caret-down"></i>
         </button>
@@ -55,10 +55,10 @@
             <a href="manageexam">Manage Exam</a>
             <a href="grades">Grades</a>
             <a href="tsheet">Tabulation sheet</a>
-            <a href="addmarks">Marks</a>
+            <a href="marks">Marks</a>
             <a href="marksheet">Marksheet</a>
         </div>
-       
+        <a href="#"><span>Users</span></a>
         <button class="dropdown-btn">Teachers
             <i class="fa fa-caret-down"></i>
         </button>

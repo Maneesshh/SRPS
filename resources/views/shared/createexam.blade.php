@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="content">
+        <div class="row page-title-div">
+            <div class="col-md-6">
+                <h2 class="title">Create Exam</h2>
+            </div>
         <form class="form-inline" action="">
             <div class="form-group">
                 <label for="examname">Exam Name:</label><input type="text" class="form-control" id="examname">

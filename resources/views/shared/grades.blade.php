@@ -3,7 +3,7 @@
     <div class="content">
         <div class="row page-title-div">
             <div class="col-md-6">
-                <h2 class="title">Manage Subject Combination</h2>
+                <h2 class="title">Grades</h2>
             
             </div>
             
@@ -14,15 +14,13 @@
         <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                  <tr>
-                    <th>#</th>
-                    <th>Class and Section</th>
-                    <th>Subject </th>
-                    <th>Status</th>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Range</th>
+                    <th>Remark</th>
                     <th>Action</th>
                 </tr>
             </thead>
-
             <tbody>
 
                 <tr>

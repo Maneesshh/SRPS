@@ -151,7 +151,7 @@ label #sidebar_btn:hover {
 
 .content {
     width: (100% - 250px);
-    margin-top: 60px;
+    margin-top: 50px;
     padding: 20px;
     margin-left: 250px;
     height: 100vh;
@@ -159,7 +159,7 @@ label #sidebar_btn:hover {
 }
 
 #check:checked~.content {
-    margin-left: 10px;
+    margin-left: 50px;
 }
 
 #check {
@@ -329,4 +329,20 @@ label #sidebar_btn:hover {
     float: right;
     padding-right: 8px;
     margin-right: 50px;
+}
+
+.panel-body.p-20 {
+    padding-top: 15px !important;
+    margin-left: -50px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+form.form-inline {
+    border-style: solid;
+    border-width: 5px;
 }
