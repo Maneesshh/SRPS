@@ -40,7 +40,11 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     //subject
     Route::get('/createsub', 'App\Http\Controllers\SharedController@createsub')->name('createsub');
+    Route::post('/insert-sub', 'App\Http\Controllers\SharedController@insertsub')->name('insertsub');
     Route::get('/managesub', 'App\Http\Controllers\SharedController@managesub')->name('managesub');
+    Route::get('/editsub/{id}', 'App\Http\Controllers\SharedController@editsub')->name('editsub');
+    Route::put('/update-sub','App\Http\Controllers\SharedController@updatesub')->name('updatesub');
+    Route::get('/deletesub/{id}', 'App\Http\Controllers\SharedController@removesub')->name('removesub');
     Route::get('/addsubc', 'App\Http\Controllers\SharedController@addsubc')->name('addsubc');
     Route::get('/managesubc', 'App\Http\Controllers\SharedController@managesubc')->name('managesubc');
     //exam
