@@ -28,16 +28,22 @@ Route::get('teacher', function () {
 Route::get('vehicle', function () {
     return view('new.vehicle');
 });
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('/myprofile', 'App\Http\Controllers\SharedController@myprofile')->name('myprofile');
+    Route::put('/updateprofile', 'App\Http\Controllers\SharedController@updateprofile')->name('updateprofile');
+
+
 });
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     //class
     Route::get('/createclass', 'App\Http\Controllers\SharedController@createclass')->name('createclass');
     Route::get('/manageclass', 'App\Http\Controllers\SharedController@manageclass')->name('manageclass');
     Route::post('/insert-class', 'App\Http\Controllers\SharedController@insertclass')->name('insertclass');
-
+    Route::get('/delete/{id}', 'App\Http\Controllers\SharedController@delclass')->name('delclass');
+    Route::get('/editclass/{id}','App\Http\Controllers\SharedController@editclass')->name('editclass');
+    Route::put('/update-class','App\Http\Controllers\SharedController@updateclass')->name('updateclass');
     //subject
     Route::get('/createsub', 'App\Http\Controllers\SharedController@createsub')->name('createsub');
     Route::post('/insert-sub', 'App\Http\Controllers\SharedController@insertsub')->name('insertsub');

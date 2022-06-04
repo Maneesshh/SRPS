@@ -2,7 +2,7 @@
 @section('content')
     <div class="content">
         <div class="row page-title-div">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <h2 class="title">Add Subject Combination</h2>
             </div>
         <form class="form-inline" method="post">
@@ -11,7 +11,9 @@
                 <div class="col-sm-7">
                     <select name="class" class="form-control" id="default" required="required">
                         <option value="">Select Class</option>
-                        <option value="">cla1</option>
+                        @foreach($classes as $items)
+                        <option value="{{$items->name}}">{{$items->classname}}</option>
+                        @endforeach
 
                     </select>
                 </div>
@@ -21,8 +23,9 @@
                 <div class="col-sm-7">
                     <select name="subject" class="form-control" id="default" required="required">
                         <option value="">Select Subject</option>
-
-                        <option value="">sub1</option>
+                         @foreach($subjects as $items)
+                        <option value="{{$items->subname}}">{{$items->subname}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

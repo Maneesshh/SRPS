@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -38,12 +40,23 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        if (!$request->has('photo')) {
+            return response()->json(['message' => 'Missing file'], 422);
+        }
+        $file = $request->file('photo');
+        $name= $file->hashName();
+        $url = Storage::disk('public')->putFileAs('', $file, $name);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'address' => $request->add,
+            'photo' =>  '/img/usersupload/' . $url,
+            // 'photo' =>  env('APP_URL') . '/public/img/usersupload/' . $url,
+
+        ]);  
         $user->attachRole($request->role_id);
         event(new Registered($user));
 

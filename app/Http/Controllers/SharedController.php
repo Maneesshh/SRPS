@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classes;
 use App\Models\Shared;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use function PHPSTORM_META\type;
@@ -21,6 +22,18 @@ class SharedController extends Controller
     {
         return view('shared.myprofile');
     }
+    public function updateprofile(Request $request )
+    {
+       $a=$request->input('id');
+       $user=User::find($a);
+       $user->name=$request->input('name');
+       $user->email=$request->input('email');
+       $user->phone=$request->input('phone');
+       $user->address=$request->input('address');
+       $user->gender=$request->input('gender');
+       $user->update();
+       return redirect()->back()->with('message','Updated Successfully');
+    }
     //class starts
     public function createclass()
     {
@@ -33,12 +46,33 @@ class SharedController extends Controller
         $classes->classnum = $request->input('classnum');
         $classes->section = $request->input('section');
         $classes->save();
-        return redirect('/createclass')->with('message', 'Class Created Sucessfully!');
+        return redirect()->back()->with('message', 'Class Created Sucessfully!');
     }
     public function manageclass()
     {
         $classes = Classes::all();
         return view('shared.manageclass', compact('classes'));
+    }
+    public function delclass($id){
+        $classes=Classes::find($id);
+        $classes->delete();
+        return redirect()->back()->with('message',"Class Deleted");
+    }
+    public function editclass($id)
+    {
+      $classes=Classes::find($id);
+      return response()->json([
+          'classes'=>$classes,
+      ]);
+    }
+    public function updateclass(Request $request){
+       $cid=$request->input('classid');
+        $classes=Classes::find($cid);
+        $classes->classname = $request->input('classname');
+        $classes->classnum = $request->input('classnum');
+        $classes->section = $request->input('section');
+        $classes->update();  
+        return redirect()->back()->with('message', 'Class Updated Sucessfully!');
     }
     //class ends
     //sub starts
@@ -86,7 +120,9 @@ class SharedController extends Controller
     }
     public function addsubc()
     {
-        return view('shared.addsubc');
+        $subjects=Subject::all();
+        $classes=Classes::all();
+        return view('shared.addsubc',compact('subjects','classes'));
     }
     public function managesubc()
     {
@@ -140,7 +176,8 @@ class SharedController extends Controller
     //student starts
     public function createstudent()
     {
-        return view('shared.createstudent');
+        $classes=Classes::all();
+        return view('shared.createstudent',compact('classes'));
     }
     public function managestudent()
     {
