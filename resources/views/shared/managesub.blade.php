@@ -7,8 +7,9 @@
 
             </div>
             @if (session('message'))
+            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
                 <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
+            </div>
         </div>
 
         <div class="panel-body p-20">

@@ -86,6 +86,8 @@
             <a href="manageparentc">Manage Parent combination</a>
         </div>
     </div>
+    <a href="myprofile" class="abc" ><span>My Profile</span></a>
+
 </div>
 
 <script type="text/javascript">

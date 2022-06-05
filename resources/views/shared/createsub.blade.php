@@ -6,8 +6,9 @@
                 <h2 class="title">Create Subject</h2>
             </div>
             @if (session('message'))
+            <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
                 <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
+            </div>
             <form class="form-inline" action="{{ 'insert-sub' }}" method="POST">
                 @csrf
                 <div class="form-group">

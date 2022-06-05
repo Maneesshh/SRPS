@@ -6,7 +6,11 @@ use App\Models\Classes;
 use App\Models\Shared;
 use App\Models\Subject;
 use App\Models\User;
+use Auth;
+use File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Log;
 
 use function PHPSTORM_META\type;
 
@@ -22,17 +26,27 @@ class SharedController extends Controller
     {
         return view('shared.myprofile');
     }
-    public function updateprofile(Request $request )
+    public function updateprofile(Request $request)
     {
-       $a=$request->input('id');
-       $user=User::find($a);
-       $user->name=$request->input('name');
-       $user->email=$request->input('email');
-       $user->phone=$request->input('phone');
-       $user->address=$request->input('address');
-       $user->gender=$request->input('gender');
-       $user->update();
-       return redirect()->back()->with('message','Updated Successfully');
+        $a = $request->input('id');
+        $user = User::find($a);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->address = $request->input('address');
+        $user->gender = $request->input('gender');
+        if ($request->hasFile('photo')) {
+            $destination = $user->photo;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $file = $request->file('photo');
+            $name = $file->hashName();
+            $url = Storage::disk('public')->putFileAs('', $file, $name);
+            $user->photo = '/img/usersupload/' . $name;
+        }
+        $user->update();
+        return redirect()->back()->with('message', 'User details updated successfully');
     }
     //class starts
     public function createclass()
@@ -53,25 +67,27 @@ class SharedController extends Controller
         $classes = Classes::all();
         return view('shared.manageclass', compact('classes'));
     }
-    public function delclass($id){
-        $classes=Classes::find($id);
+    public function delclass($id)
+    {
+        $classes = Classes::find($id);
         $classes->delete();
-        return redirect()->back()->with('message',"Class Deleted");
+        return redirect()->back()->with('message', "Class Deleted");
     }
     public function editclass($id)
     {
-      $classes=Classes::find($id);
-      return response()->json([
-          'classes'=>$classes,
-      ]);
+        $classes = Classes::find($id);
+        return response()->json([
+            'classes' => $classes,
+        ]);
     }
-    public function updateclass(Request $request){
-       $cid=$request->input('classid');
-        $classes=Classes::find($cid);
+    public function updateclass(Request $request)
+    {
+        $cid = $request->input('classid');
+        $classes = Classes::find($cid);
         $classes->classname = $request->input('classname');
         $classes->classnum = $request->input('classnum');
         $classes->section = $request->input('section');
-        $classes->update();  
+        $classes->update();
         return redirect()->back()->with('message', 'Class Updated Sucessfully!');
     }
     //class ends
@@ -98,19 +114,18 @@ class SharedController extends Controller
     {
         $subjects = Subject::find($id);
         return response()->json([
-            'subject'=>$subjects,
+            'subject' => $subjects,
         ]);
     }
-    public function updatesub(Request $request){
-        $subid=$request->input('subid');
-        $subjects=Subject::find($subid);
+    public function updatesub(Request $request)
+    {
+        $subid = $request->input('subid');
+        $subjects = Subject::find($subid);
         $subjects->subname = $request->input('subname');
         $subjects->subcode = $request->input('subcode');
         $subjects->sub_type = $request->input('sub-type');
         $subjects->update();
-        return redirect()->back()->with('message','Data Updated Successfully');
-
-
+        return redirect()->back()->with('message', 'Data Updated Successfully');
     }
     public function removesub($id)
     {
@@ -120,9 +135,9 @@ class SharedController extends Controller
     }
     public function addsubc()
     {
-        $subjects=Subject::all();
-        $classes=Classes::all();
-        return view('shared.addsubc',compact('subjects','classes'));
+        $subjects = Subject::all();
+        $classes = Classes::all();
+        return view('shared.addsubc', compact('subjects', 'classes'));
     }
     public function managesubc()
     {
@@ -176,8 +191,8 @@ class SharedController extends Controller
     //student starts
     public function createstudent()
     {
-        $classes=Classes::all();
-        return view('shared.createstudent',compact('classes'));
+        $classes = Classes::all();
+        return view('shared.createstudent', compact('classes'));
     }
     public function managestudent()
     {

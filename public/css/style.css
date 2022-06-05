@@ -18,6 +18,7 @@ header {
     color: #fff;
     margin-top: 8px;
     margin-left: 32px;
+    display: inline-block;
     margin-bottom: 0px;
     text-transform: uppercase;
     font-size: 24px;
@@ -178,15 +179,28 @@ label #sidebar_btn:hover {
     opacity: 0.8;
 }
 
+a.abc {
+    display: none;
+}
+
 
 /* Responsive CSS */
 
 @media screen and (max-width: 780px) {
     .sidebar {
-        display: none;
+        position: fixed;
     }
     #sidebar_btn {
+        position: fixed;
+    }
+    .logout_btn {
         display: none;
+    }
+    .my_profile {
+        display: none;
+    }
+    a.abc {
+        display: inline-block;
     }
     .content {
         margin-left: 0;
@@ -227,14 +241,12 @@ label #sidebar_btn:hover {
     }
     .mobile_nav_items {
         background: #2F323A;
-        display: none;
     }
     .mobile_nav_items a {
         color: #fff;
         display: block;
-        text-align: center;
         letter-spacing: 1px;
-        line-height: 60px;
+        line-height: 30px;
         text-decoration: none;
         box-sizing: border-box;
         transition: 0.5s;
@@ -370,6 +382,11 @@ form.form-inline {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1rem;
+}
+
+.card-header {
+    font-weight: 600;
+    text-align: center;
 }
 
 .gutters-sm {

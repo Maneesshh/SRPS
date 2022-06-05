@@ -5,6 +5,11 @@
             <div class="col-md-6">
                 <h2 class="title">Create Exam</h2>
             </div>
+        </div>
+        @if (session('message'))
+        <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+            <div class="alert alert-success">{{ session('message') }}</div>
+        </div>
         <form class="form-inline" action="">
             <div class="form-group">
                 <label for="examname">Exam Name:</label><input type="text" class="form-control" id="examname">

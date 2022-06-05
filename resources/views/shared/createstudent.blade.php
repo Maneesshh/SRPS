@@ -7,6 +7,10 @@
 
             </div>
         </div>
+        @if (session('message'))
+        <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+            <div class="alert alert-success">{{ session('message') }}</div>
+        </div>
             <form class="form-inline" method="post">
                 <div class="form-group">
                     <label for="default" class="col-sm-2 control-label">Full Name</label>

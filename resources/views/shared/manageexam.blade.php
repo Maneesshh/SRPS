@@ -9,6 +9,10 @@
             
             <!-- /.col-md-6 text-right -->
         </div>
+        @if (session('message'))
+        <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
+            <div class="alert alert-success">{{ session('message') }}</div>
+        </div>
 
         <div class="panel-body p-20">
         <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
     <link href="/css/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@2.8.2/dist/alpine.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
     <script src="{{ asset('/js/app.js') }}"></script>

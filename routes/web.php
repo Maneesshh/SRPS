@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::get('/myprofile', 'App\Http\Controllers\SharedController@myprofile')->name('myprofile');
     Route::put('/updateprofile', 'App\Http\Controllers\SharedController@updateprofile')->name('updateprofile');
+    Route::get('/change-password', 'App\Http\Controllers\ChangePasswordController@index');
+    Route::post('/change-password', 'App\Http\Controllers\ChangePasswordController@store')->name('change.password');
 
 
 });
