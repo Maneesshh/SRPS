@@ -56,17 +56,25 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/addsubc', 'App\Http\Controllers\SharedController@addsubc')->name('addsubc');
     Route::get('/managesubc', 'App\Http\Controllers\SharedController@managesubc')->name('managesubc');
     //exam
-    Route::get('/createexam', 'App\Http\Controllers\SharedController@createexam')->name('createexam');
-    Route::get('/manageexam', 'App\Http\Controllers\SharedController@manageexam')->name('manageexam');
-    Route::get('/grades', 'App\Http\Controllers\SharedController@grades')->name('grades');
-    Route::get('/tsheet', 'App\Http\Controllers\SharedController@tsheet')->name('tsheet');
-    Route::get('/marks', 'App\Http\Controllers\SharedController@marks')->name('marks');
-    Route::get('/marksheet', 'App\Http\Controllers\SharedController@marksheet')->name('marksheet');
+    Route::get('/createexam', 'App\Http\Controllers\ExamController@createexam')->name('createexam');
+    Route::post('/insertexam', 'App\Http\Controllers\ExamController@insertexam')->name('insertexam');
+    Route::get('/editexam/{id}', 'App\Http\Controllers\ExamController@editexam')->name('editexam');
+    Route::put('/updateexam', 'App\Http\Controllers\ExamController@updateexam')->name('updateexam'); 
+   Route::get('/deleteexam/{id}', 'App\Http\Controllers\ExamController@removeexam')->name('removeexam');
+    Route::get('/manageexam', 'App\Http\Controllers\ExamController@manageexam')->name('manageexam');
+    Route::get('/grades', 'App\Http\Controllers\ExamController@grades')->name('grades');
+    Route::get('/tsheet', 'App\Http\Controllers\ExamController@tsheet')->name('tsheet');
+    Route::get('/marks', 'App\Http\Controllers\ExamController@marks')->name('marks');
+    Route::get('/marksheet', 'App\Http\Controllers\ExamController@marksheet')->name('marksheet');
 
     //teachers
     Route::get('/createteacher', 'App\Http\Controllers\SharedController@createteacher')->name('createteacher');
     Route::get('/manageteacher', 'App\Http\Controllers\SharedController@manageteacher')->name('manageteacher');
     Route::get('/addteacherc', 'App\Http\Controllers\SharedController@addteacherc')->name('addteacherc');
+    Route::get('/editteacher/{id}', 'App\Http\Controllers\SharedController@editteacher')->name('editteacher');  
+    Route::get('/deleteuser/{id}', 'App\Http\Controllers\SharedController@deleteuser')->name('deleteuser');   
+ 
+    Route::put('/updateteacher', 'App\Http\Controllers\SharedController@updateteacher')->name('updateteacher');
     Route::get('/manageteacherc', 'App\Http\Controllers\SharedController@manageteacherc')->name('manageteacherc');
     //students
     Route::get('/createstudent', 'App\Http\Controllers\SharedController@createstudent')->name('createstudent');
@@ -76,6 +84,11 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
      Route::get('/manageparent', 'App\Http\Controllers\SharedController@manageparent')->name('manageparent');
      Route::get('/addparentc', 'App\Http\Controllers\SharedController@addparentc')->name('addparentc');
      Route::get('/manageparentc', 'App\Http\Controllers\SharedController@manageparentc')->name('manageparentc');
+     //Users
+     Route::get('/auser', 'App\Http\Controllers\SharedController@auser')->name('auser');
+     Route::post('/addusers', 'App\Http\Controllers\SharedController@addusers')->name('addusers');
+
+
 
 });
 

@@ -58,12 +58,11 @@
             <a href="marks">Marks</a>
             <a href="marksheet">Marksheet</a>
         </div>
-        <a href="#"><span>Users</span></a>
+        <a href="auser"><span>Users</span></a>
         <button class="dropdown-btn">Teachers
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="createteacher">Add Teacher</a>
             <a href="manageteacher">Manage Teachers</a>
             <a href="addteacherc">Add Teacher combination</a>
             <a href="manageteacherc">Manage Teacher combination</a>
@@ -73,14 +72,12 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="createstudent">Add Students</a>
-            <a href="managestudent">Manage Studntss</a>
+            <a href="managestudent">Manage Students</a>
         </div>
         <button class="dropdown-btn">Parents
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="createparent">Add Parents</a>
             <a href="manageparent">Manage Parents</a>
             <a href="addparentc">Add Parent combination</a>
             <a href="manageparentc">Manage Parent combination</a>

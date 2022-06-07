@@ -10,6 +10,7 @@
             <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
                 <div class="alert alert-success">{{ session('message') }}</div>
             </div>
+            @endif
             <!-- /.col-md-6 text-right -->
         </div>
 

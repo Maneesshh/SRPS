@@ -6,6 +6,8 @@ use App\Models\Classes;
 use App\Models\Shared;
 use App\Models\Subject;
 use App\Models\User;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use File;
 use Illuminate\Http\Request;
@@ -131,7 +133,7 @@ class SharedController extends Controller
     {
         $subjects = Subject::find($id);
         $subjects->delete();
-        return redirect('/managesub')->with('message', 'Deleted Successfully!');
+        return redirect()->back()->with('message', 'Deleted Successfully!');
     }
     public function addsubc()
     {
@@ -144,32 +146,6 @@ class SharedController extends Controller
         return view('shared.managesubc');
     }
     //sub ends
-    //exam starts
-    public function createexam()
-    {
-        return view('shared.createexam');
-    }
-    public function manageexam()
-    {
-        return view('shared.manageexam');
-    }
-    public function grades()
-    {
-        return view('shared.grades');
-    }
-    public function marks()
-    {
-        return view('shared.marks');
-    }
-    public function marksheet()
-    {
-        return view('shared.marksheet');
-    }
-    public function tsheet()
-    {
-        return view('shared.tsheet');
-    }
-    //exam ends
     //teachers start
     public function createteacher()
     {
@@ -177,16 +153,51 @@ class SharedController extends Controller
     }
     public function manageteacher()
     {
-        return view('shared.manageteacher');
+        $users = User::whereRoleIs(['teachers'])->get();
+        return view('shared.manageteacher',compact('users'));
     }
     public function addteacherc()
     {
-        return view('shared.addteacherc');
+        
+        $subjects = Subject::all();
+        $classes = Classes::all();
+        // $user =User::hasRole('teachers');
+        $users = User::whereRoleIs(['teachers'])->get();
+        return view('shared.addteacherc',compact('subjects','classes','users'));
     }
     public function manageteacherc()
     {
+
         return view('shared.manageteacherc');
     }
+    public function editteacher($id)
+    {
+        $user=User::find($id);
+        return response()->json([
+            'user'=>$user,
+        ]);
+    }
+    public function updateteacher(Request $request)
+    {
+        $a = $request->input('tid');
+        $user = User::find($a);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->address = $request->input('address');
+        $user->gender = $request->input('gender');
+        if ($request->hasFile('photo')) {
+            $destination = $user->photo;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $file = $request->file('photo');
+            $name = $file->hashName();
+            $url = Storage::disk('public')->putFileAs('', $file, $name);
+            $user->photo = '/img/usersupload/' . $name;
+        }
+        $user->update();
+        return redirect()->back()->with('message', 'Teachers details updated successfully');    }
     //teachers ends
     //student starts
     public function createstudent()
@@ -217,5 +228,45 @@ class SharedController extends Controller
         return view('shared.manageparentc');
     }
     //Parents ends
+    public function auser()
+    {
+     return view('shared.auser');
+    }
+    public function addusers(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'add' =>['required', 'string', 'max:255'],
+            'gender'=>['required', 'string', 'max:50'],
+            'phone' => 'required|digits:10',
+        ]);
+        if (!$request->has('photo')) {
+            return response()->json(['message' => 'Missing file'], 422);
+        }
+        $file = $request->file('photo');
+        $name= $file->hashName();
+        $url = Storage::disk('public')->putFileAs('', $file, $name);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'address' => $request->add,
+            'photo' =>  '/img/usersupload/' . $url,
+            // 'photo' =>  env('APP_URL') . '/public/img/usersupload/' . $url,
+
+        ]);  
+        $user->attachRole($request->role_id);
+        return redirect()->back()->with('message','User Added Successfully');
+    }
+    public function deleteuser($id)
+    {
+        $user=User::find($id);
+        $user->delete();
+        return redirect()->back()->with('message', 'Deleted Successfully!');
+    }
 
 }

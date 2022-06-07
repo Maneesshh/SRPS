@@ -39,6 +39,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'add' =>['required', 'string', 'max:255'],
+            'gender'=>['required', 'string', 'max:50'],
+            'phone' => 'required|digits:10',
         ]);
         if (!$request->has('photo')) {
             return response()->json(['message' => 'Missing file'], 422);
