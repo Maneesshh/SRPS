@@ -24,11 +24,9 @@
                                     <x-label for="role_id" value="{{ __('Select User Type:') }}" />
                                     <select name="role_id"
                                         class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                                        <option value="guest">Guest</option>
                                         <option value="parents">Parents</option>
-                                        <option value="students">Students</option>
                                         <option value="teachers">Teachers</option>
-                                        <option value="admin">Admin</option>
+                                        <option value="admin" disabled>Admin</option>
                                     </select>
                                 </div><br>
                                 <!-- Name -->

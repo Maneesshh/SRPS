@@ -11,7 +11,7 @@
                 <div class="alert alert-success">{{ session('message') }}</div>
             </div>
         </div>
-
+       @endif
         <div class="panel-body p-20">
             <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>

@@ -2,7 +2,7 @@
 @section('content')
     <div class="content">
         <div class="row page-title-div">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <h2 class="title">Manage Subject Combination</h2>
             
             </div>
@@ -13,7 +13,7 @@
         <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
             <div class="alert alert-success">{{ session('message') }}</div>
         </div>
-
+        @endif
         <div class="panel-body p-20">
         <table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>

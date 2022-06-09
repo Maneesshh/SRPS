@@ -72,6 +72,7 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
+            <a href="/createstudent">Admit Students</a>
             <a href="managestudent">Manage Students</a>
         </div>
         <button class="dropdown-btn">Parents

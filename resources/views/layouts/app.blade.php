@@ -23,7 +23,7 @@
     <script src="{{ asset('/ABC/js/jquery-3.4.1.min.js') }}" defer></script>
     <script src="{{ asset('/js/jquery.js') }}" defer></script>
     <script src="{{ asset('/js/jquery.slim.min.js') }}"></script>
-    <script src="{{ asset('/js/poper.min.js') }}"></script>
+    {{-- <script src="{{ asset('/js/poper.min.js') }}"></script> --}}
 </head>
 
 <body >
