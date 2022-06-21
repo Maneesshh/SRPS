@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classes;
 use App\Models\Shared;
 use App\Models\Subject;
+use App\Models\Subjectcomb;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
@@ -139,11 +140,22 @@ class SharedController extends Controller
     {
         $subjects = Subject::all();
         $classes = Classes::all();
-        return view('shared.addsubc', compact('subjects', 'classes'));
+        $users = User::whereRoleIs(['teachers'])->get();
+        return view('shared.addsubc', compact('subjects', 'classes','users'));
+    }
+    public function addsubcomb(Request $request)
+    {
+        $subc=new Subjectcomb();
+        $subc->class_id=$request->input('class');
+        $subc->subject_id=$request->input('subject');
+        $subc->teacher_id=$request->input('teacher');
+        $subc->save();
+        return redirect()->back()->with('message', 'Comb Added');
     }
     public function managesubc()
     {
-        return view('shared.managesubc');
+        $subc=Subjectcomb::all();
+        return view('shared.managesubc',compact('subc'));
     }
     //sub ends
     //teachers start

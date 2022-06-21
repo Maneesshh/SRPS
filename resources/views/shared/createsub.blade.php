@@ -9,6 +9,7 @@
             <div x-data="{show: true}" x-init="setTimeout(() => show = false, 2000)" x-show="show">
                 <div class="alert alert-success">{{ session('message') }}</div>
             </div>
+            @endif
             <form class="form-inline" action="{{ 'insert-sub' }}" method="POST">
                 @csrf
                 <div class="form-group">

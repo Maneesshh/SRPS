@@ -20,27 +20,33 @@
                 <tr>
                   <tr>
                     <th>#</th>
-                    <th>Class and Section</th>
+                    <th>Class</th>
+                       <th>  Section</th>
                     <th>Subject </th>
-                    <th>Status</th>
+                    <th>Teacher</th>
                     <th>Action</th>
                 </tr>
             </thead>
 
             <tbody>
-
+                <?php $row=1; ?>
+                @foreach ($subc as $item)
                 <tr>
-                    <td><?php ?></td>
-                    <td><?php ?></td>
-                    <td><?php ?></td>
-                    <td><?php ?></td>
+                    <th scope="row">{{ $row++ }}</th>
+                    <td>{{ \Illuminate\Support\Facades\DB::table('classes')->where('id',$item->class_id)->value('classname')}}</td>    
+                  <td>  {{ \Illuminate\Support\Facades\DB::table('classes')->where('id',$item->class_id)->value('section')}}</td>
+                    <td>{{ \Illuminate\Support\Facades\DB::table('subjects')->where('id',$item->subject_id)->value('subname')}}</td>
+                    <td>{{ \Illuminate\Support\Facades\DB::table('users')->where('id',$item->teacher_id)->value('name')}}</td>
+                    {{-- <td>{{ $item->class_id }}</td>
+                    <td>{{ $item->subject_id }}</td>
+                    <td>{{ $item->teacher_id }}</td> --}}
                     <td>
-                        <a href=""><i class="fa fa-edit" title="Edit Record"></i> </a>&nbsp;&nbsp;
-                        <a href=""><i class="fa fa-remove" title="Delete Record"></i> </a>
+                        <button type="button" class="fa fa-edit btnedit" data-bs-toggle="modal" data-bs-target="#myModal" value="{{ $item->id }}" title="Edit Record"></button>
+                    &nbsp; &nbsp;                              
+                      <a href="{{ url('/deleteexam/' . $item->id) }}"><i class="fa fa-remove" title="Delete Record"></i> </a>
                     </td>
                 </tr>
-
-
+            @endforeach
             </tbody>
         </table>
 

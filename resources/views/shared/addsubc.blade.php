@@ -10,14 +10,15 @@
                 <div class="alert alert-success">{{ session('message') }}</div>
             </div>
         @endif
-        <form class="form-inline" method="post">
+        <form class="form-inline" method="post" action="{{('addsubcomb')}}">
+            @csrf
             <div class="form-group">
                 <label for="default" class="col-sm-1 control-label">Class:</label>
                 <div class="col-sm-7">
                     <select name="class" class="form-control" id="default" required="required">
                         <option value="">Select Class</option>
                         @foreach($classes as $items)
-                        <option value="{{$items->name}}">{{$items->classname}}</option>
+                        <option value="{{$items->id}}">{{$items->classname}}</option>
                         @endforeach
 
                     </select>
@@ -29,7 +30,18 @@
                     <select name="subject" class="form-control" id="default" required="required">
                         <option value="">Select Subject</option>
                          @foreach($subjects as $items)
-                        <option value="{{$items->subname}}">{{$items->subname}}</option>
+                        <option value="{{$items->id}}">{{$items->subname}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="default" class="col-sm-2 control-label">Teacher</label>
+                <div class="col-sm-7">
+                    <select name="teacher" class="form-control" id="default" required="required">
+                        <option value="">Select Teacher</option>
+                         @foreach($users as $items)
+                        <option value="{{$items->id}}">{{$items->name}}</option>
                         @endforeach
                     </select>
                 </div>

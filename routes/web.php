@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'role:admin|teachers']], function () {
     Route::put('/update-sub', 'App\Http\Controllers\SharedController@updatesub')->name('updatesub');
     Route::get('/deletesub/{id}', 'App\Http\Controllers\SharedController@removesub')->name('removesub');
     Route::get('/addsubc', 'App\Http\Controllers\SharedController@addsubc')->name('addsubc');
+    Route::post('/addsubcomb', 'App\Http\Controllers\SharedController@addsubcomb')->name('addsubcomb');
     Route::get('/managesubc', 'App\Http\Controllers\SharedController@managesubc')->name('managesubc');
     //exam
     Route::get('/createexam', 'App\Http\Controllers\ExamController@createexam')->name('createexam');
