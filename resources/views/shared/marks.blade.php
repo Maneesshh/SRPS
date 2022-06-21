@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <div class="content">
-        MArks
+       jwdejjd
     </div>
     @endsection

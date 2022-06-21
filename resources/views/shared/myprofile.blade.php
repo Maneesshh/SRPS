@@ -20,55 +20,18 @@
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="{{ Auth::user()->photo }}" alt="Admin" class="rounded-circle p-1 bg-primary"
-                                        width="100">
+                                        width="200"><br>
                                     <div class="mt-3">
                                         <h4>Name:{{ Auth::user()->name }}<br><br>
-                                            Email:{{ Auth::user()->email }}
+                                            Email:{{ Auth::user()->email }}<br><br>
+                                            Address:{{ Auth::user()->address }} <br><br>
+                                            Phone:{{ Auth::user()->phone }} <br><br>
+                                            Gender:{{ Auth::user()->gender }} <br><br>
+
                                         </h4><br>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card mt-3">
-                          <div class="card-header">Change Password</div>
-                            <form method="POST" action="{{ route('change.password') }}">
-                                @csrf
-                                @foreach ($errors->all() as $error)
-                                    <p class="text-danger">{{ $error }}</p>
-                                @endforeach
-                              <br>  <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0">Current Password</h6>
-                                    </div>
-                                    <div class="col-sm-5 text-secondary">
-                                        <input id="password" type="password" class="form-control" name="current_password"
-                                            autocomplete="current-password">
-                                    </div>
-                                </div><br>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0">New Password</h6>
-                                    </div>
-                                    <div class="col-sm-5 text-secondary">
-                                        <input id="new_password" type="password" class="form-control" name="new_password"
-                                            autocomplete="current-password">
-                                    </div>
-                                </div><br>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6">
-                                        <h6 class="mb-0">Conform New Password</h6>
-                                    </div>
-                                    <div class="col-sm-5 text-secondary">
-                                        <input id="new_confirm_password" type="password" class="form-control"
-                                            name="new_confirm_password" autocomplete="current-password">
-                                    </div>
-                                </div><br>
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">Update Password</button>
-                                    </div>
-                                </div><br>
-                            </form>
                         </div>
                     </div>
                     <div class="col-lg-8">
@@ -147,6 +110,48 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                        <div class="card mt-3">
+                            <div class="card-header">Change Password</div>
+                              <form method="POST" action="{{ route('change.password') }}">
+                                  @csrf
+                                  @foreach ($errors->all() as $error)
+                                      <p class="text-danger">{{ $error }}</p>
+                                  @endforeach
+                                <br>  <div class="row mb-3">
+                                      <div class="col-sm-6">
+                                          <h6 class="mb-0">Current Password</h6>
+                                      </div>
+                                      <div class="col-sm-5 text-secondary">
+                                          <input id="password" type="password" class="form-control" name="current_password"
+                                              autocomplete="current-password">
+                                      </div>
+                                  </div><br>
+                                  <div class="row mb-3">
+                                      <div class="col-sm-6">
+                                          <h6 class="mb-0">New Password</h6>
+                                      </div>
+                                      <div class="col-sm-5 text-secondary">
+                                          <input id="new_password" type="password" class="form-control" name="new_password"
+                                              autocomplete="current-password">
+                                      </div>
+                                  </div><br>
+                                  <div class="row mb-3">
+                                      <div class="col-sm-6">
+                                          <h6 class="mb-0">Conform New Password</h6>
+                                      </div>
+                                      <div class="col-sm-5 text-secondary">
+                                          <input id="new_confirm_password" type="password" class="form-control"
+                                              name="new_confirm_password" autocomplete="current-password">
+                                      </div>
+                                  </div><br>
+                                  <div class="form-group row mb-0">
+                                      <div class="col-md-8 offset-md-4">
+                                          <button type="submit" class="btn btn-primary">Update Password</button>
+                                      </div>
+                                  </div><br>
+                              </form>
+                          </div>
                     </div>
                 </div>
             </div>

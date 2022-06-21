@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/change-password', 'App\Http\Controllers\ChangePasswordController@index');
     Route::post('/change-password', 'App\Http\Controllers\ChangePasswordController@store')->name('change.password');
 });
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
+Route::group(['middleware' => ['auth', 'role:admin|teachers']], function () {
     //class
     Route::get('/createclass', 'App\Http\Controllers\SharedController@createclass')->name('createclass');
     Route::get('/manageclass', 'App\Http\Controllers\SharedController@manageclass')->name('manageclass');
