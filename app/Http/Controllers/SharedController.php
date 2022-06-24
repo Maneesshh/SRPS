@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classes;
 use App\Models\Shared;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Subjectcomb;
 use App\Models\User;
@@ -238,6 +239,11 @@ class SharedController extends Controller
 
         ]);
         $user->attachRole('3');
+        $student_records=new Student();
+        $student_records->user_id=$user->id;
+        $student_records->class_id=$request->input('class');
+        $student_records->section=$request->input('section');
+        $student_records->save();
         return redirect()->back()->with('message', 'Student Added Successfully');
     }
     public function managestudent()

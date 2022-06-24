@@ -176,7 +176,8 @@ label #sidebar_btn:hover {
     background: #fff;
     padding: 15px;
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 17px;
+    font-weight: 400;
     opacity: 0.8;
 }
 
@@ -375,7 +376,7 @@ form.form-inline {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1 solid rgba(0, 0, 0, .125);
+    border: 2 solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
 }
 
@@ -416,4 +417,12 @@ form.form-inline {
 
 .shadow-none {
     box-shadow: none!important;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
 }

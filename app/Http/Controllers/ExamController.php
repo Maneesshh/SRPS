@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use App\Models\Exam;
+use App\Models\Marks;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Subjectcomb;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades;
+use Illuminate\Support\Facades\DB;
 
 class ExamController extends Controller
 {
@@ -57,7 +64,29 @@ class ExamController extends Controller
     }
     public function marks()
     {
-        return view('shared.marks');
+        $classlist=Subjectcomb::all();
+        $class=Classes::all();
+        $examlist=Exam::all();
+        return view('shared.marks',compact('classlist','class','examlist'));
+    }
+    public function editmarks(Request $r)
+    {
+        $class=$r->class;
+        $subject=$r->subject;
+        $exam=$r->exam;
+        $marks=Marks::all();
+        return view('shared.editmarks',compact('class','subject','exam','marks'));
+    }
+    public function updatemarks(Request $request)
+    {
+        $mid=$request->input('mid');
+        $marks=Marks::find($mid);
+        $marks->prac=$request->input('prac');
+        $marks->theory=$request->input('theory');
+        $marks->total= $request->input(['prac'] )+ $request->input(['theory']);
+        $marks->update();
+        return redirect()->back()->with('message','Marks Inserted ');
+
     }
     public function marksheet()
     {

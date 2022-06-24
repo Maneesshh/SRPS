@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth', 'role:admin|teachers']], function () {
     Route::get('/manageexam', 'App\Http\Controllers\ExamController@manageexam')->name('manageexam');
     Route::get('/tsheet', 'App\Http\Controllers\ExamController@tsheet')->name('tsheet');
     Route::get('/marks', 'App\Http\Controllers\ExamController@marks')->name('marks');
+    Route::put('/updatemarks', 'App\Http\Controllers\ExamController@updatemarks')->name('updatemarks');
+    Route::get('/editmarks', 'App\Http\Controllers\ExamController@editmarks')->name('editmarks');
     Route::get('/marksheet', 'App\Http\Controllers\ExamController@marksheet')->name('marksheet');
 
     //teachers
