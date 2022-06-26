@@ -13,7 +13,7 @@
     @endif
             <div class="card" id="test">
                 <p>
-                <form method="Post" action="{{ 'updatemarks' }}">
+                <form method="post" action="{{ 'updatemarks' }}">
                     @csrf 
                     @method('put')
                     <input type="hidden" name="class" id="class" value="{{ $class }}">
