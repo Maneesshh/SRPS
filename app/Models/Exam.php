@@ -14,4 +14,5 @@ class Exam extends Model
         'term',
         'year',
     ];
+    
 }

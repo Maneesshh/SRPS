@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('class_id');
             $table->string('section');
             $table->unsignedBigInteger('parent_id')->nullable();
-            $table->string('session');
+            $table->string('session')->nullable();
             $table->tinyInteger('age')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('class_id')->references('id')->on('classes')->restrictOnDelete();

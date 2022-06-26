@@ -5,6 +5,12 @@ body {
     background-image: url(../img/body-bg.jpg);
 }
 
+.bgimg {
+    size: 100%;
+    background-image: url('../img/cert.jpg');
+    background-size: 100%;
+}
+
 header {
     z-index: 1;
     position: fixed;

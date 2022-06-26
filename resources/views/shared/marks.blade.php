@@ -14,7 +14,7 @@
         @endif
         <div class="card">
             <p>
-            <form id="frm1" method="GET" action="{{ 'editmarks' }}">
+            <form id="frm1" method="POST" action="{{ 'editmarks' }}">
                 @csrf
                 <x-label for="class"></x-label>Select Class:
                 <select name="class" id="class"
