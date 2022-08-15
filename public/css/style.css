@@ -5,12 +5,29 @@ body {
     background-image: url(../img/body-bg.jpg);
 }
 
-.bgimg {
-    size: 100%;
-    background-image: url('../img/cert.jpg');
-    background-size: 100%;
+div#bgimg.content {
+    background-image: url(../img/aa.png);
+    background-repeat: no-repeat;
+    margin-left: 260px;
+    margin-top: 50px;
+    background-size: 100% 90%;
+    color: #FFFFFF;
 }
 
+
+/* .center {
+    align-items: center;
+    margin-top: 45px;
+    font-weight: 400;
+} */
+
+.center img {
+    margin-left: 475px;
+    margin-top: 45px;
+    align-items: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,600&display=swap');
 header {
     z-index: 1;
     position: fixed;
@@ -39,9 +56,33 @@ header {
     margin-bottom: -35px;
 }
 
-.left_area h3 span {
+h3 span {
     color: #19B3D3;
     margin-left: -7px;
+}
+
+section {
+    font-family: "Sofia", sans-serif;
+    font-size: 30px;
+    /* text-shadow: 3px 3px 3px #0a0404f8; */
+    color: #262626;
+    text-align: center;
+}
+
+.center h3 p {
+    color: #222;
+    font-family: "Sofia", sans-serif;
+    font-size: 30px;
+    text-align: center;
+}
+
+.center h4 {
+    color: #222;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .logout_btn {
@@ -166,6 +207,18 @@ label #sidebar_btn:hover {
     transition: 0.5s;
 }
 
+
+/* .content.bgimg {
+    width: (100% - 250px);
+    margin-top: 80px;
+    padding: 20px;
+    margin-left: 260px;
+    margin-bottom: 0px;
+    margin-right: 40px;
+    height: 100vh;
+    transition: 0.5s;
+} */
+
 #check:checked~.content {
     margin-left: 50px;
 }
@@ -193,6 +246,18 @@ a.abc {
 
 
 /* Responsive CSS */
+
+@media print {
+    body *:not(.content):not(.content *) {
+        visibility: hidden;
+        margin-left: 65px;
+    }
+    #printed {
+        position: relative;
+        top: 0;
+        left: 165px;
+    }
+}
 
 @media screen and (max-width: 780px) {
     .sidebar {

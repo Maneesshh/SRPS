@@ -71,7 +71,7 @@
                         </div><br>
                         <div>
                             <x-label for="gpoint" :value="__('Grade Point')" />
-                            <x-input id="gname" class="block mt-1 w-full" type="number" name="gpoint" max="4" required
+                            <x-input id="gname" class="block mt-1 w-full" type="number" step="any" name="gpoint" max="4" required
                                 autofocus />
                         </div>
                         <!-- Marks from -->
@@ -128,7 +128,7 @@
                         </div><br>
                         <div>
                             <x-label for="gpoint" :value="__('Grade Point')" />
-                            <x-input id="gpoint" class="block mt-1 w-full" type="number" name="gpoint" max="4" required
+                            <x-input id="gpoint" class="block mt-1 w-full" type="number" step="any" name="gpoint" max="4" required
                                 autofocus />
                         </div>
                         <!-- Marks from -->

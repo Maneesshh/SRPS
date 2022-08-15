@@ -27,9 +27,6 @@ return [
         'parents' => [
             'profile' => 'r,u',
         ],
-        'guest' => [
-            'profile' => 'r,u',
-        ]
     ],
 
     'permissions_map' => [

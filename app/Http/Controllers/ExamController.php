@@ -29,12 +29,20 @@ class ExamController extends Controller
        $exam->year=$request->input('year');
        $exam->save();
        $exam_records=new ExamRecords();
+       $e=$exam->id;
        $student_records=DB::table('student_records')->get();
+       $te=DB::table('subject-class-teacher')->get();
         foreach($student_records as $s){
-            $exam_records->exam_id=$exam->id;
-            $exam_records->student_id =$s->user_id;
-            $exam_records->class_id =$s->class_id;
-            $exam_records->save();
+            // $exam_records->exam_id=$e;
+            // $exam_records->student_id =$s->user_id;
+            // $exam_records->class_id =$s->class_id;
+            // $exam_records->save();
+            DB::table('exam_records')->insert(['exam_id'=>$e,'student_id'=>$s->user_id,'class_id'=>$s->class_id]);
+           foreach($te as $t){
+            if($s->class_id==$t->class_id){
+            DB::table('marks')->insert(['exam_id'=>$e,'student_id'=>$s->user_id,'subject_id'=>$t->subject_id,'class_id'=>$s->class_id]);
+            }
+        }
         }      
        return redirect()->back()->with('message','Exam Created');
     }
@@ -84,19 +92,40 @@ class ExamController extends Controller
         $class=$r->class;
         $subject=$r->subject;
         $exam=$r->exam;
-        $marks=Marks::all();
-        return view('shared.editmarks',compact('class','subject','exam','marks'));
+        // $marks=Marks::all();
+        $marks=DB::select("SELECT * FROM `marks` WHERE `class_id`=$class && `exam_id`=$exam && `subject_id`=$subject");
+        // $marks=DB::select("SELECT  marks.id,`student_id`,`class_id`,`subject_id`,`exam_id`,`prac`,`theory`,`total` FROM `marks` INNER JOIN subjects ON marks.subject_id=subjects.id WHERE marks.student_id IN(SELECT `student_id` FROM `marks` GROUP BY student_id) && marks.exam_id=$exam && marks.class_id=$class");
+        // $test=DB::select("SELECT * FROM `marks` GROUP BY marks.subject_id");
+        // $test2=DB::select("SELECT * FROM `marks` ORDER BY marks.student_id");
+        $test3=DB::select("SELECT `id`,`user_id` FROM `student_records` WHERE `class_id`=$class");
+        $test=DB::select("SELECT COUNT(*) FROM `student_records` WHERE `class_id`=$class");
+        return view('shared.editmarks',compact('class','subject','exam','marks','test3','test'));
+        // return view('shared.editmarks',compact('class','exam','marks','test','test2','test3'));
+
     }
     public function updatemarks(Request $request)
     {
+        // dd($request->all());
+        // $mid=$request->input('mid');
+        // $marks=Marks::find($mid);
+        // $marks->prac=$request->input('prac');
+        // $marks->theory=$request->input('theory');
+        // $marks->total= $request->input(['prac'] )+ $request->input(['theory']);
+        // $marks->save(); 
         $mid=$request->input('mid');
-        $marks=Marks::find($mid);
-        $marks->prac=$request->input('prac');
-        $marks->theory=$request->input('theory');
-        $marks->total= $request->input(['prac'] )+ $request->input(['theory']);
-        $marks->update();
-        return redirect()->back()->with('message','Marks Inserted ');
+        $prac=$request->input('prac');
+        $theory=$request->input('theory');
+        foreach($mid as $m=>$id){
+            $values=array(
+               'prac'=>$prac[$m],
+               'theory'=>$theory[$m],
+               'total'=>$prac[$m]+$theory[$m],
+            );
+            DB::table('marks')->where('id','=',$id)->update($values);
+        }
 
+        return redirect(route('marks'))->with('message','Marks Inserted ');
+        
     }
     public function marksheet()
     {
@@ -115,16 +144,11 @@ class ExamController extends Controller
     {
         $class=$r->class;
         $exam=$r->exam;
-        // $marks=Marks::all();
         $marks=DB::select("SELECT  marks.id,`student_id`,`class_id`,`subject_id`,`exam_id`,`prac`,`theory`,`total` FROM `marks` INNER JOIN subjects ON marks.subject_id=subjects.id WHERE marks.student_id IN(SELECT `student_id` FROM `marks` GROUP BY student_id) && marks.exam_id=$exam && marks.class_id=$class");
-        // SELECT * FROM `marks` GROUP BY marks.student_id
-        // $test=Marks::select('*')->groupBy('subject_id')->get();
         $test=DB::select("SELECT * FROM `marks` GROUP BY marks.subject_id");
         $test2=DB::select("SELECT * FROM `marks` ORDER BY marks.student_id");
         $test3=DB::select("SELECT student_id FROM `marks` GROUP BY student_id");
-
-        // $test=Marks::all();
-       return view('shared.viewtsheet',compact('class','exam','marks','test','test2','test3'));
+        return view('shared.viewtsheet',compact('class','exam','marks','test','test2','test3'));
     }
     public function viewmsheet(Request $r)
     {

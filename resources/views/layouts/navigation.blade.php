@@ -4,7 +4,7 @@
     <div class="left_area">
         <img src="ABC/images/logo.png" alt="">
         <a href="dashboard">
-            <h3>rep <span>ort</span></h3>
+            <h3>SR <span>PS</span></h3>
         </a>
     </div>
     <label for="check">
@@ -30,8 +30,8 @@
 </header>
 <div class="sidebar">
     <div class="mobile_nav_items">
-        <a href="/dashboard"><span>Dashboard</span></a>
         @if (Auth::user()->hasRole('admin|teachers'))
+        <a href="/dashboard"><span>Dashboard</span></a>
             <button class="dropdown-btn">Class
                 <i class="fa fa-caret-down"></i>
             </button>
@@ -73,11 +73,20 @@
             </button>
             <div class="dropdown-container">
                 <a href="manageparent">Manage Parents</a>
-                <a href="addparentc">Add Parent combination</a>
-                <a href="manageparentc">Manage Parent combination</a>
+                {{-- <a href="addparentc">Add Parent combination</a>
+                <a href="manageparentc">Manage Parent combination</a> --}}
             </div>
         @endif
 
+    </div>
+        @if (Auth::user()->hasRole('students|parents'))
+        <button class="dropdown-btn">Exam
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+        <a href="tsheet">Tabulation sheet</a>
+        <a href="marksheet">Marksheet</a>
+        @endif
     </div>
     <a href="myprofile" class="abc"><span>My Profile</span></a>
     @if (Auth::user()->hasRole('admin'))

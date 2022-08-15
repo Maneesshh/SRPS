@@ -217,7 +217,8 @@ class SharedController extends Controller
     public function createstudent()
     {
         $classes = Classes::all();
-        return view('shared.createstudent', compact('classes'));
+        $users = User::whereRoleIs(['parents'])->get();
+        return view('shared.createstudent', compact('classes','users'));
     }
     public function addstudent(Request $request)
     {
@@ -243,6 +244,7 @@ class SharedController extends Controller
         $student_records->user_id=$user->id;
         $student_records->class_id=$request->input('class');
         $student_records->section=$request->input('section');
+        $student_records->parent_id=$request->input('pid');
         $student_records->save();
         return redirect()->back()->with('message', 'Student Added Successfully');
     }

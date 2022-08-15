@@ -33,6 +33,15 @@
                             @endforeach
                         </select>
                     </div><br>
+                    <x-label for="default" class="col-sm-2 control-label">Parent</x-label>
+                    <div class="col-sm-15">
+                        <select name="parent" class="form-control w-full" id="default">
+                            <option value="" class="block mt-1 w-full" >Select Section</option>
+                            @foreach ($users as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div><br>
                     <div>
                         <x-label for="name" :value="__('Name')" />
                         <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"

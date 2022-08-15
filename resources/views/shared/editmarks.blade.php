@@ -37,15 +37,15 @@
                             <?php $i=1;?> 
                             @foreach ($marks as $mk)
                             <tr>
-                                @if(($mk->subject_id==$subject && $mk->class_id==$class ))
+                                {{-- @if(($mk->subject_id==$subject && $mk->class_id==$class )) --}}
                                     <td>{{ $i++ }}</td>
-                                    <td> <input type="hidden" name="mid" id="mid" value="{{ $mk->id}}">
+                                    <td> <input type="hidden" name="mid[]" id="mid" value="{{ $mk->id}}">
                                         <input type="hidden" name="sid" id="sid" value="{{ $mk->student_id}}">
                                         {{ \Illuminate\Support\Facades\DB::table('users')->where('id', $mk->student_id)->value('name') }}
                                     </td>
-                                    <td><input  min="1" max="60" class="text-center"name="theory" value="{{ $mk->theory }}" type="number"></td>
-                                    <td><input  min="1" max="40" class="text-center" name="prac" value="{{ $mk->prac }}" type="number"></td>              
-                                 @endif
+                                    <td><input  min="1" max="60" class="text-center" name="theory[]" value="{{ $mk->theory }}" type="number"></td>
+                                    <td><input  min="1" max="40" class="text-center" name="prac[]" value="{{ $mk->prac }}" type="number"></td>              
+                                 {{-- @endif --}}
                         </tr>
                         @endforeach
 

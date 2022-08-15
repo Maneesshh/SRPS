@@ -35,9 +35,14 @@
                 <x-label for="student" class="inline-block"></x-label>Select Student:
                 <select name="student" id="student"
                     class="inline-block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ">
+                    @if (Auth::user()->hasRole('admin|teachers'))
                     @foreach ($users as $user)
                         <option value="{{ $user->name }}">{{ $user->name }}</option>
                     @endforeach
+                    @endif
+                    @if (Auth::user()->hasRole('students'))
+                    <option value="{{ Auth::user()->name }}">{{ Auth::user()->name }}</option>
+                   @endif
                 </select>
                 &nbsp &nbsp &nbsp &nbsp
                 <button type="submit" class="btn btn-primary" id="idbutton">Submit</button>

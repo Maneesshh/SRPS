@@ -14,20 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('new.index');
+    return view('auth.register');
 });
-Route::get('about', function () {
-    return view('new.about');
-});
-Route::get('contact', function () {
-    return view('new.contact');
-});
-Route::get('teacher', function () {
-    return view('new.teacher');
-});
-Route::get('vehicle', function () {
-    return view('new.vehicle');
-});
+// Route::get('about', function () {
+//     return view('new.about');
+// });
+// Route::get('contact', function () {
+//     return view('new.contact');
+// });
+// Route::get('teacher', function () {
+//     return view('new.teacher');
+// });
+// Route::get('vehicle', function () {
+//     return view('new.vehicle');
+// });
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
@@ -35,6 +35,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/updateprofile', 'App\Http\Controllers\SharedController@updateprofile')->name('updateprofile');
     Route::get('/change-password', 'App\Http\Controllers\ChangePasswordController@index');
     Route::post('/change-password', 'App\Http\Controllers\ChangePasswordController@store')->name('change.password');
+    Route::get('/tsheet', 'App\Http\Controllers\ExamController@tsheet')->name('tsheet');
+    Route::post('/viewtsheet', 'App\Http\Controllers\ExamController@viewtsheet')->name('viewtsheet');
+    Route::post('/viewmsheet', 'App\Http\Controllers\ExamController@viewmsheet')->name('viewmsheet');
+    Route::get('/marksheet', 'App\Http\Controllers\ExamController@marksheet')->name('marksheet');
+
 });
 Route::group(['middleware' => ['auth', 'role:admin|teachers']], function () {
     //class
@@ -61,13 +66,9 @@ Route::group(['middleware' => ['auth', 'role:admin|teachers']], function () {
     Route::put('/updateexam', 'App\Http\Controllers\ExamController@updateexam')->name('updateexam');
     Route::get('/deleteexam/{id}', 'App\Http\Controllers\ExamController@removeexam')->name('removeexam');
     Route::get('/manageexam', 'App\Http\Controllers\ExamController@manageexam')->name('manageexam');
-    Route::get('/tsheet', 'App\Http\Controllers\ExamController@tsheet')->name('tsheet');
-    Route::post('/viewtsheet', 'App\Http\Controllers\ExamController@viewtsheet')->name('viewtsheet');
-    Route::post('/viewmsheet', 'App\Http\Controllers\ExamController@viewmsheet')->name('viewmsheet');
     Route::get('/marks', 'App\Http\Controllers\ExamController@marks')->name('marks');
     Route::put('/updatemarks', 'App\Http\Controllers\ExamController@updatemarks')->name('updatemarks');
     Route::post('/editmarks', 'App\Http\Controllers\ExamController@editmarks')->name('editmarks');
-    Route::get('/marksheet', 'App\Http\Controllers\ExamController@marksheet')->name('marksheet');
 
     //teachers
     Route::get('/createteacher', 'App\Http\Controllers\SharedController@createteacher')->name('createteacher');

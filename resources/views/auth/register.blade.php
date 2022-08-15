@@ -3,6 +3,8 @@
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <h3>SR <span>PS</span></h3>
+
             </a>
         </x-slot>
 
@@ -14,9 +16,9 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="name" :value="__('Name')" style="color: blue" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                <x-input  class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
                     autofocus />
             </div>
 
@@ -71,7 +73,6 @@
                 <x-label for="role_id" value="{{ __('Register as:') }}" />
                 <select name="role_id"
                     class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                    <option value="guest">Guest</option>
                     <option value="parents">Parents</option>
                     <option value="students">Students</option>
                         <option value="teachers">Teachers</option>
