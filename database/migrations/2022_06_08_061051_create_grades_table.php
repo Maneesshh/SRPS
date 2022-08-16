@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('gpoint');
+            $table->string('gpoint')->unique();
             $table->string('marks_from');
             $table->string('marks_to');
             $table->string('remarks');

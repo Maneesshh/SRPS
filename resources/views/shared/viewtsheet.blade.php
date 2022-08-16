@@ -68,14 +68,16 @@
                             <td>{{ $row++ }}</td>
                             <td>{{ \Illuminate\Support\Facades\DB::table('users')->where('id', $t->student_id)->value('name') }}
                             </td>
-                            @foreach ($test as $m)
+                            @foreach ($test as $m) 
                                 @foreach ($test2 as $mak)
                                     @if ($t->student_id == $mak->student_id && $m->subject_id == $mak->subject_id)
                                         @if ($mak->class_id == $class && $mak->exam_id == $exam)
                                             {{-- <td>{{$mak->prac}}</td>
                             <td>{{$mak->theory}}</td> --}}
-                                            <td>{{ \Illuminate\Support\Facades\DB::table('grades')->where('id', $mak->grade_id)->value('gpoint') }}
+                                            <td>{{ \Illuminate\Support\Facades\DB::table('grades')->where('gpoint', $mak->gpoint)->value('gpoint') }}
                                             </td>
+                                            <td>{{ \Illuminate\Support\Facades\DB::table('grades')->where('gpoint', $mak->gpoint)->value('name') }}</td>
+
                                             {{-- <td>{{$mak->grade_id}}</td> --}}
                                         @endif
                                     @endif
@@ -85,10 +87,12 @@
                                 @if ($t->student_id == $mak->student_id && $m->subject_id == $mak->subject_id)
                                     @if ($mak->class_id == $class && $mak->exam_id == $exam)
                                         <td>
-                                            {{ \Illuminate\Support\Facades\DB::table('marks')->where('student_id', $t->student_id)->value('total') }}
+                                            {{ \Illuminate\Support\Facades\DB::table('exam_records')->where([['student_id', $t->student_id],['exam_id',$exam]])->value('total') }}
                                         </td>
                                         {{-- <td>   {{$mak->grade_id}}  </td> --}}
-                                        <td>{{ \Illuminate\Support\Facades\DB::table('grades')->where('id', $mak->grade_id)->value('name') }}
+                                        <td>
+                                            {{ \Illuminate\Support\Facades\DB::table('exam_records')->where([['student_id', $t->student_id],['exam_id',$exam]])->value('ave') }}
+
                                         </td>
                                         <td>{{ $row1++ }}</td>
                                     @endif

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('exam_id');
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('class_id');
-            $table->integer('total')->nullable();
+            $table->string('total')->nullable();
             $table->string('ave')->nullable();
             $table->string('section')->nullable();
             $table->integer('pos')->nullable();

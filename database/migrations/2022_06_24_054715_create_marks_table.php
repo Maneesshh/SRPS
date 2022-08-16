@@ -22,13 +22,12 @@ return new class extends Migration
             $table->integer('prac')->nullable();
             $table->integer('theory')->nullable();
             $table->integer('total')->nullable();
-            $table->unsignedBigInteger('grade_id')->nullable();  
+            $table->string('gpoint')->nullable();  
             $table->string('year')->nullable();
             $table->foreign('student_id')->references('id')->on('users');
             $table->foreign('class_id')->references('id')->on('classes');
             $table->foreign('subject_id')->references('id')->on('subjects');  
             $table->foreign('exam_id')->references('id')->on('exams'); 
-            $table->foreign('grade_id')->references('id')->on('grades');                                           
             $table->timestamps();
         });
     }

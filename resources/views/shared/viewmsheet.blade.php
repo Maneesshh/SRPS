@@ -7,12 +7,10 @@
             <img src="ABC/images/logo.png" width="70" alt=""/>
                 <h3 class="font-effect-shadow-multiple"><p>Student Result Generating System</p></h3><br>
                 <h4>certificate</h4>
-                <br>
             <section>   This certificate is awarded to {{ $student }} of class {{$class}} in recognition of his/her excellence efforts and achievement in being an outstanding student and winning the
-                {{ $exam }} exam in the session - 2021-2022. his exam total mark is 220 .
-                <img src="/img/sig.jpg" width="100" alt=""/>Signature</section>
-        </div>
-
+                {{ $exam }} exam in the session - 2021-2022. his exam total mark is {{$tot}}.
+                <img src="/img/sig.jpg" width="100" alt=""/>Signature<br></section><br>
+        </div><br>
     </div>
 
                <input type="hidden" name="class" id="class" value="{{ $class }}">

@@ -116,14 +116,33 @@ class ExamController extends Controller
         $prac=$request->input('prac');
         $theory=$request->input('theory');
         foreach($mid as $m=>$id){
+            $t=$prac[$m]+$theory[$m];
+            if($t>90)
+            $ga=4.0;
+            elseif($t>80)
+            $ga=3.7; 
+            elseif($t>70)
+            $ga=3.3; 
+            elseif($t>60)
+            $ga=3.0;  
+            elseif($t>50)
+            $ga=2.7;  
+            elseif($t>40)
+            $ga=2.3;  
+            elseif($t>30)
+            $ga=2.0; 
+            elseif($t>24)
+            $ga=1.7;
+            else
+            $ga=0;            
             $values=array(
                'prac'=>$prac[$m],
                'theory'=>$theory[$m],
-               'total'=>$prac[$m]+$theory[$m],
+               'total'=>$t,
+               'gpoint'=>$ga,
             );
             DB::table('marks')->where('id','=',$id)->update($values);
         }
-
         return redirect(route('marks'))->with('message','Marks Inserted ');
         
     }
@@ -144,6 +163,24 @@ class ExamController extends Controller
     {
         $class=$r->class;
         $exam=$r->exam;
+        $cou=DB::table('subject-class-teacher')->where('class_id','=',$class)->count();
+        // $cou=DB::select("SELECT COUNT(`subject_id`) AS C FROM `subject-class-teacher` WHERE `class_id`=$class");
+        // dd($cou);
+        $std=User::whereRoleIs(['students'])->get();
+        foreach($std as $s){
+            $tot=DB::table('marks')->where([
+                ['class_id', '=', $class],
+                ['exam_id', '=', $exam],
+                ['student_id','=',$s->id]])->sum('gpoint');
+                $ave=$tot / $cou;
+                $values=array(
+                    'total'=>$tot,
+                    'ave'=>$ave,
+                 );
+           DB::table('exam_records')->where([ ['class_id', '=', $class],
+           ['exam_id', '=', $exam],
+           ['student_id','=',$s->id]])->update($values);
+        }
         $marks=DB::select("SELECT  marks.id,`student_id`,`class_id`,`subject_id`,`exam_id`,`prac`,`theory`,`total` FROM `marks` INNER JOIN subjects ON marks.subject_id=subjects.id WHERE marks.student_id IN(SELECT `student_id` FROM `marks` GROUP BY student_id) && marks.exam_id=$exam && marks.class_id=$class");
         $test=DB::select("SELECT * FROM `marks` GROUP BY marks.subject_id");
         $test2=DB::select("SELECT * FROM `marks` ORDER BY marks.student_id");
@@ -155,7 +192,15 @@ class ExamController extends Controller
         $class=$r->class;
         $exam=$r->exam;
         $student=$r->student;
-        return view('shared.viewmsheet',compact('class','exam','student'));
+        $sid=DB::table('users')->where('name', $student)->value('id');
+        $eid=DB::table('exams')->where('name', $exam)->value('id');
+        $cid=DB::table('classes')->where('classname', $class)->value('id');
+        // $tot=DB::table('exam_records')->where([
+        //     ['student_id','=', $student],
+        //     ['exam_id','=', $exam],
+        // ['class_id','=', $class]])->get('total');
+        $tot=DB::table('exam_records')->where([['student_id', $sid],['exam_id',$eid],['class_id',$cid]])->value('total');
+        return view('shared.viewmsheet',compact('class','exam','student','tot'));
     }
     //exam ends
 }
