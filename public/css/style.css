@@ -8,10 +8,13 @@ body {
 div#bgimg.content {
     background-image: url(../img/aa.png);
     background-repeat: no-repeat;
-    margin-left: 260px;
+    /* margin-left: 260px;
     margin-top: 50px;
-    background-size: 100% 90%;
+    /* background-size: 100% 90%; */
     color: #FFFFFF;
+    /* background-size: cover; */
+    background-size: 100% 90%;
+    margin-top: 50px;
 }
 
 
